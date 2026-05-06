@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Future School</title>
+    
+    <!-- ===== INTERNAL CSS ===== -->
+    <style>
+        /* ===== RESET AND GENERAL STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* ===== HEADER AND NAVIGATION ===== */
+        header {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation Menu */
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 5px;
+        }
+
+        /* Hover effect on navigation links */
+        nav a:hover {
+            border-bottom: 2px solid white;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Navigation Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* ===== MAIN SECTIONS ===== */
+        section {
+            display: none;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        h1 {
+            color: #0066cc;
+            margin-bottom: 30px;
+            font-size: 42px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #0066cc;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        h3 {
+            color: #0052a3;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* ===== HOME SECTION ===== */
+        #home {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        #home h1 {
+            color: white;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .banner-image {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin: 30px auto;
+            border: 2px dashed rgba(255, 255, 255, 0.5);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            background: #0066cc;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #0052a3;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+        }
+
+        .btn-primary {
+            background: #0066cc;
+        }
+
+        .btn-primary:hover {
+            background: #0052a3;
+        }
+
+        .btn-secondary {
+            background: #28a745;
+        }
+
+        .btn-secondary:hover {
+            background: #218838;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        #about {
+            background-color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        /* ===== COURSES SECTION ===== */
+        #courses {
+            background-color: white;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .course-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hover effect on course cards */
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.2);
+            border-color: #0066cc;
+        }
+
+        .course-card h3 {
+            color: #0066cc;
+            margin-bottom: 15px;
+        }
+
+        .course-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        #contact {
+            background-color: white;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 5px rgba(0, 102, 204, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* ===== ERROR AND SUCCESS MESSAGES ===== */
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+            border: 1px solid #f5c6cb;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            /* Header adjustments */
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            /* Typography adjustments */
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            /* Home section adjustments */
+            #home h1 {
+                font-size: 36px;
+            }
+
+            .banner-image {
+                height: 200px;
+            }
+
+            /* About section adjustments */
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .about-image {
+                height: 200px;
+            }
+
+            /* Course grid adjustments */
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            /* Buttons adjustments */
+            .btn {
+                display: block;
+                width: 100%;
+            }
+
+            /* Section padding adjustments */
+            section {
+                padding: 40px 15px;
+            }
+
+            nav a {
+                padding: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .banner-image,
+            .about-image {
+                height: 150px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            textarea {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-container">
+            <div class="logo">🎓 Bright Future School</div>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <nav id="navigation">
+                <a href="#" onclick="showSection('home')">Home</a>
+                <a href="#" onclick="showSection('about')">About</a>
+                <a href="#" onclick="showSection('courses')">Courses</a>
+                <a href="#" onclick="showSection('contact')">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HOME SECTION ===== -->
+    <section id="home" class="active">
+        <h1>Welcome to Bright Future School</h1>
+        <p style="font-size: 18px; color: rgba(255, 255, 255, 0.9); margin-bottom: 30px;">
+            Empowering students with quality education and modern learning techniques
+        </p>
+        <div class="banner-image">📚 School Banner Image</div>
+        <button class="btn btn-primary" onclick="showWelcomeMessage()">Click to Learn More</button>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section id="about">
+        <h1>About Our School</h1>
+        <div class="about-content">
+            <div>
+                <h2>Our Mission</h2>
+                <p>
+                    At Bright Future School, we are committed to providing quality education that 
+                    prepares students for success in the 21st century. Our dedicated team of educators 
+                    focuses on fostering critical thinking, creativity, and character development.
+                </p>
+                <h3>Why Choose Us?</h3>
+                <ul style="margin-left: 20px; color: #666;">
+                    <li>Experienced and qualified teachers</li>
+                    <li>Modern learning facilities</li>
+                    <li>Student-centered approach</li>
+                    <li>Holistic development programs</li>
+                    <li>Strong focus on academics and extracurriculars</li>
+                </ul>
+            </div>
+            <div class="about-image">🏫 School Building Image</div>
+        </div>
+    </section>
+
+    <!-- ===== COURSES SECTION ===== -->
+    <section id="courses">
+        <h1>Our Courses</h1>
+        <p style="text-align: center; margin-bottom: 30px;">
+            We offer a variety of courses designed to meet diverse learning needs and interests
+        </p>
+        
+        <div class="courses-grid">
+            <!-- Course Card 1 -->
+            <div class="course-card">
+                <h3>📖 English & Literature</h3>
+                <p>
+                    Master the English language with a focus on grammar, literature, 
+                    creative writing, and communication skills. Develop critical reading 
+                    and analytical abilities.
+                </p>
+                <button class="btn btn-secondary" onclick="alert('Interested in English & Literature? Contact us for more details!')">Learn More</button>
+            </div>
+
+            <!-- Course Card 2 -->
+            <div class="course-card">
+                <h3>🔬 Science & Technology</h3>
+                <p>
+                    Explore Physics, Chemistry, and Biology through hands-on experiments 
+                    and practical learning. Discover the wonders of science and modern 
+                    technological applications.
+                </p>
+                <button class="btn btn-secondary" onclick="alert('Interested in Science & Technology? Contact us for more details!')">Learn More</button>
+            </div>
+
+            <!-- Course Card 3 -->
+            <div class="course-card">
+                <h3>🔢 Mathematics</h3>
+                <p>
+                    Build strong mathematical foundations with engaging lessons in 
+                    algebra, geometry, and calculus. Develop problem-solving and logical 
+                    reasoning skills.
+                </p>
+                <button class="btn btn-secondary" onclick="alert('Interested in Mathematics? Contact us for more details!')">Learn More</button>
+            </div>
+
+            <!-- Course Card 4 -->
+            <div class="course-card">
+                <h3>🎨 Arts & Creativity</h3>
+                <p>
+                    Express yourself through visual arts, music, and performing arts. 
+                    Develop creative thinking and artistic skills in a supportive 
+                    and inspiring environment.
+                </p>
+                <button class="btn btn-secondary" onclick="alert('Interested in Arts & Creativity? Contact us for more details!')">Learn More</button>
+            </div>
+
+            <!-- Course Card 5 -->
+            <div class="course-card">
+                <h3>🌍 Social Studies</h3>
+                <p>
+                    Understand history, geography, and cultures from around the world. 
+                    Develop global awareness and civic responsibility through engaging 
+                    historical and contemporary topics.
+                </p>
+                <button class="btn btn-secondary" onclick="alert('Interested in Social Studies? Contact us for more details!')">Learn More</button>
+            </div>
+
+            <!-- Course Card 6 -->
+            <div class="course-card">
+                <h3>💻 Computer Science</h3>
+                <p>
+                    Learn coding, web development, and digital literacy skills. 
+                    Prepare for the digital age with hands-on programming experience 
+                    and technology fundamentals.
+                </p>
+                <button class="btn btn-secondary" onclick="alert('Interested in Computer Science? Contact us for more details!')">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact">
+        <h1>Contact Us</h1>
+        <p style="text-align: center; margin-bottom: 30px;">
+            Have questions? Get in touch with us. We'd love to hear from you!
+        </p>
+
+        <div class="contact-container">
+            <!-- Error Message Container -->
+            <div class="error-message" id="errorMessage"></div>
+
+            <!-- Contact Form -->
+            <form id="contactForm" onsubmit="submitForm(event)">
+                <!-- Name Field -->
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        placeholder="Enter your full name"
+                    >
+                    <div class="form-error" id="nameError">Please enter your name</div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Enter your email address"
+                    >
+                    <div class="form-error" id="emailError">Please enter a valid email address</div>
+                </div>
+
+                <!-- Message Field -->
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        placeholder="Enter your message or question..."
+                    ></textarea>
+                    <div class="form-error" id="messageError">Please enter your message</div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 Bright Future School. All rights reserved.</p>
+        <p>Empowering the leaders of tomorrow</p>
+    </footer>
+
+    <!-- ===== INTERNAL JAVASCRIPT ===== -->
+    <script>
+        // ===== NAVIGATION FUNCTIONALITY =====
+        // Show selected section and hide others
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show the selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+
+            // Close mobile menu if open
+            const nav = document.getElementById('navigation');
+            nav.classList.remove('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // ===== MOBILE MENU TOGGLE =====
+        // Toggle navigation menu on mobile devices
+        const menuToggle = document.getElementById('menuToggle');
+        const navigation = document.getElementById('navigation');
+
+        menuToggle.addEventListener('click', function() {
+            navigation.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navigation.classList.remove('active');
+            });
+        });
+
+        // ===== WELCOME MESSAGE FUNCTIONALITY =====
+        // Display a welcome message when the button is clicked
+        function showWelcomeMessage() {
+            alert('🎓 Welcome to Bright Future School!\n\nWe are excited to have you here. Explore our courses, learn about our mission, and get in touch with us today!');
+        }
+
+        // ===== CONTACT FORM VALIDATION =====
+        // Validate and process the contact form
+        function submitForm(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form input values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Reset error messages
+            document.getElementById('nameError').style.display = 'none';
+            document.getElementById('emailError').style.display = 'none';
+            document.getElementById('messageError').style.display = 'none';
+            document.getElementById('errorMessage').classList.remove('show');
+
+            let isValid = true;
+
+            // Validate name field (check if empty)
+            if (name === '') {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate email field (check if empty and valid format)
+            if (email === '') {
+                document.getElementById('emailError').innerHTML = 'Please enter your email address';
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            } else if (!isValidEmail(email)) {
+                document.getElementById('emailError').innerHTML = 'Please enter a valid email address';
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate message field (check if empty)
+            if (message === '') {
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            }
+
+            // If form is valid, submit and show success message
+            if (isValid) {
+                // Show success alert
+                alert(
+                    '✅ Success!\n\n' +
+                    'Thank you for your message, ' + name + '!\n\n' +
+                    'We have received your inquiry and will contact you at ' + email + ' soon.\n\n' +
+                    'Best regards,\nBright Future School'
+                );
+
+                // Reset the form
+                document.getElementById('contactForm').reset();
+
+                // Optional: Log the form data (for demonstration)
+                console.log('Form submitted:', { name, email, message });
+            }
+        }
+
+        // ===== EMAIL VALIDATION HELPER FUNCTION =====
+        // Check if email format is valid
+        function isValidEmail(email) {
+            // Regular expression for basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // ===== REMOVE ERROR MESSAGES ON INPUT CHANGE =====
+        // Clear error messages when user starts typing
+        document.getElementById('name').addEventListener('input', function() {
+            document.getElementById('nameError').style.display = 'none';
+        });
+
+        document.getElementById('email').addEventListener('input', function() {
+            document.getElementById('emailError').style.display = 'none';
+        });
+
+        document.getElementById('message').addEventListener('input', function() {
+            document.getElementById('messageError').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
